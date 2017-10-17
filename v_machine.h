@@ -8,8 +8,8 @@ struct v_machine{
 };
 
 struct v_stack_frame{
-	uint8_t* stack;
-	uint64_t* array;
+	int64_t* stack;
+	int64_t* array;
 	uint32_t code_length;
 	uint8_t* code;
 	struct class_header* current_class;

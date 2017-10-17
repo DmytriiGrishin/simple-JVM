@@ -1,7 +1,6 @@
 #pragma once
 #include <stdio.h>
 #include <stdint.h>
-#include <stdint.h>
 #include "class.h"
 #include "class_heap.h" 
 enum v_loader_status{

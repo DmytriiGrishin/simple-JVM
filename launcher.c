@@ -12,27 +12,10 @@ int main (int argc, char const* const* argv){
 	if (load_status == LOADER_FORMAT_ERROR || load_status == LOADER_VERSION_ERROR) return LAUNCH_FORMAT_ERROR;
 	struct class_heap_t* class_heap = init_heap(class);
 	vm_init(class_heap, class, &vm);
-/*	struct class_header* found  = get_by_name_heap("Test", class_heap);
-	uint16_t main_index = find_method(class, "main");
-	uint16_t code_index = find_code_attribute(class, main_index);
-
-	printf("%d\n", main_index);
-		printf("%d\n", code_index);
-		printf("code: \nname index: %d\n", class->methods[main_index].attributes[code_index].attribute_name_index);
-
-	struct code_attribute* code = malloc(sizeof(struct code_attribute));
-	code->attribute_name_index = class->methods[main_index].attributes[code_index].attribute_name_index;
-	code->attribute_length = class->methods[main_index].attributes[code_index].attribute_length;
-	code->max_stack = class->methods[main_index].attributes[code_index].info[0]<<8 | class->methods[main_index].attributes[code_index].info[1];
-	code->max_locals = class->methods[main_index].attributes[code_index].info[2]<<8 | class->methods[main_index].attributes[code_index].info[3];
-	code->code_length = class->methods[main_index].attributes[code_index].info[4]<<24 | class->methods[main_index].attributes[code_index].info[5] << 16 | class->methods[main_index].attributes[code_index].info[6] << 8 | class->methods[main_index].attributes[code_index].info[7] ;
-	printf("length %d\n", code->code_length);
-	code->code = class->methods[main_index].attributes[code_index].info +8;
-
-	for (int i = 0; i < code->code_length; ++i){
-		printf("%d\n", code->code[i]);
+	if(interpret(&vm)==1){
+		printf("No such word: 0x%x\n", *(vm.stack->code+vm.stack->pc));
+		return LAUNCH_FILE_ERROR;
 	}
-*/
 	return LAUNCH_OK;
 }
 

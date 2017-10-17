@@ -162,7 +162,6 @@ uint64_t GetConstantPoolSize(FILE* file, struct class_header* class, int i){
 }
 
 void parse_attributes(struct attribute_info* here, uint16_t count, FILE* from){
-	uint32_t size;
 	for (int j = 0; j < count; ++j)
 	{
 	fread(&(here->attribute_name_index), 1, sizeof(uint16_t), from);
@@ -170,7 +169,7 @@ void parse_attributes(struct attribute_info* here, uint16_t count, FILE* from){
 	fread(&(here->attribute_length),1,sizeof(uint32_t),from);
 	uint32_t attr_len =  here->attribute_length = to_32little_endian(here->attribute_length);
 	here->info = malloc(sizeof(uint8_t)*attr_len);
-	for(int i=0;i<attr_len;i++){
+	for(uint32_t i=0;i<attr_len;i++){
 		fread(&(here->info[i]),1,sizeof(uint8_t),from);
 	}
 	here++;

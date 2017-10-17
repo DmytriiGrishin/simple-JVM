@@ -1,7 +1,7 @@
 #include "class_heap.h"
 char* get_class_name(struct class_header* from){
 	uint16_t name_id = from->constant_pool[from->this_class]->info[0];
-	name_id << 8; 
+	name_id = name_id << 8; 
 	name_id = from->constant_pool[from->this_class]->info[1];
 	return (char*)from->constant_pool[name_id]->info;
 }
@@ -25,7 +25,7 @@ int add_heap(struct class_header* this, struct class_heap_t* heap){
 }
 
 struct class_header* get_by_name_heap(char* name, struct class_heap_t* heap){
-	for(long long i =heap->count-1; i>0; i--){
+	for(long long i =heap->count-1; i>=0; i--){
 		if (!strcmp(name, heap->classes[i]->name) ){
 			return heap->classes[i]->class;
 		} 

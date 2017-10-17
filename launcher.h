@@ -1,6 +1,5 @@
 #pragma once
 #include <stdio.h>
-#include "linker.h"
 #include "loader.h"
 #include "v_machine.h"
 #include "class_heap.h"
